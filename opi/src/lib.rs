@@ -1,8 +1,6 @@
-use std::fs;
-use std::fs::{File, OpenOptions};
+use std::fs::File;
 use std::io;
 use std::io::prelude::*;
-use std::os::unix;
 use std::path::Path;
 pub struct OPI5{
     led: LED,
@@ -79,7 +77,7 @@ impl LED {
 }
 
 // A simple implementation of `% echo s > path`
-pub fn echo(s: &str, path: &Path) -> io::Result<()> {
+fn echo(s: &str, path: &Path) -> io::Result<()> {
     let mut f = File::create(path)?;
 
     f.write_all(s.as_bytes())
