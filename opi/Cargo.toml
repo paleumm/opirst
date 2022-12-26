@@ -11,3 +11,7 @@ cursive = "0.20"
 [[bin]]
 name = "opi-cli"
 path = "src/opi-cli.rs"
+
+[[bin]]
+name = "opi-tui"
+path = "src/opi-tui.rs"
