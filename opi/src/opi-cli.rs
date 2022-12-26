@@ -1,5 +1,5 @@
-use opi::OPI5;
-
+use opi::*;
 fn main() {
-    let opi = OPI5::new();
+    let mut opi = OPI5::new();
+    opi.led_status(Status::On);
 }
