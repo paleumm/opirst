@@ -27,8 +27,8 @@ fn show_next(s: &mut Cursive) {
 fn show_answer(s: &mut Cursive, msg: &str, status: Status, triggering: Triggering) {
 
     let mut opi = OPI5::new();
-    opi.led_status(status);
     opi.led_triggering(triggering);
+    opi.led_status(status);
     s.pop_layer();
     s.add_layer(
         Dialog::text(msg)
