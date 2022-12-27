@@ -4,7 +4,6 @@ use opi::*;
 
 fn main() {
     let mut siv = cursive::default();
-    let mut OPI5 = OPI5::new();
     siv.add_global_callback('q', |s| s.quit());
     siv.add_layer(
         Dialog::text("Welcome to OPiRST\n   LED Status")
