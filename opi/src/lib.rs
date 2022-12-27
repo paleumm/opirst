@@ -2,7 +2,7 @@ use std::fs::File;
 use std::io;
 use std::io::prelude::*;
 use std::path::Path;
-pub struct OPI5{
+pub struct OPI5 {
     led: LED,
 }
 
@@ -14,14 +14,14 @@ impl OPI5 {
     pub fn led_status(&mut self, status: Status) {
         match status {
             Status::On => self.led.turn_on(),
-            Status::Off => self.led.turn_off()
+            Status::Off => self.led.turn_off(),
         }
     }
 
     pub fn led_triggering(&mut self, triggering: Triggering) {
         match triggering {
             Triggering::HeartBeat => self.led.blink(),
-            Triggering::None => self.led.stop_blink()
+            Triggering::None => self.led.stop_blink(),
         }
     }
 }
@@ -33,18 +33,20 @@ pub struct LED {
 
 pub enum Status {
     On,
-    Off 
+    Off,
 }
 
 pub enum Triggering {
     HeartBeat,
-    None
+    None,
 }
 
 impl LED {
-
     pub fn new() -> Self {
-        LED { status: Status::On, trigger: Triggering::HeartBeat }
+        LED {
+            status: Status::On,
+            trigger: Triggering::HeartBeat,
+        }
     }
 
     pub fn turn_off(&mut self) {
@@ -63,7 +65,11 @@ impl LED {
 
     pub fn blink(&mut self) {
         self.trigger = Triggering::HeartBeat;
-        echo("heartbeat", &Path::new("/sys/class/leds/status_led/trigger")).unwrap_or_else(|why| {
+        echo(
+            "heartbeat",
+            &Path::new("/sys/class/leds/status_led/trigger"),
+        )
+        .unwrap_or_else(|why| {
             println!("! {:?}", why.kind());
         });
     }
