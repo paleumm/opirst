@@ -17,10 +17,10 @@ fn show_next(s: &mut Cursive) {
     s.pop_layer();
     s.add_layer(
         Dialog::text("LED Status")
-            .title("Question 1")
+            .title("LED Settings")
             .button("Turn On", |s| show_answer(s, "LED Turned On", Status::On, Triggering::None))
-            .button("Turn Off", |s| show_answer(s, "LED Turned Off", Status::Off, Triggering::None))
-            .button("Blinking", |s| show_answer(s, "LED Blinking", Status::On, Triggering::HeartBeat)),
+            .button("Blinking", |s| show_answer(s, "LED Blinking", Status::On, Triggering::HeartBeat))
+            .button("Turn Off", |s| show_answer(s, "LED Turned Off", Status::Off, Triggering::None)),
     );
 }
 
