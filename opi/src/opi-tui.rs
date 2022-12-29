@@ -1,6 +1,7 @@
-use cursive::views::{Dialog};
+use cursive::views::Dialog;
 use cursive::Cursive;
-use opi::*;
+use opi::utils::led;
+use opi::OPI5;
 
 fn main() {
     let mut siv = cursive::default();
@@ -18,14 +19,24 @@ fn show_next(s: &mut Cursive) {
     s.add_layer(
         Dialog::text("LED Status")
             .title("LED Settings")
-            .button("Turn On", |s| show_answer(s, "LED Turned On", Status::On, Triggering::None))
-            .button("Blinking", |s| show_answer(s, "LED Blinking", Status::On, Triggering::HeartBeat))
-            .button("Turn Off", |s| show_answer(s, "LED Turned Off", Status::Off, Triggering::None)),
+            .button("Turn On", |s| {
+                show_answer(s, "LED Turned On", led::Status::On, led::Triggering::None)
+            })
+            .button("Blinking", |s| {
+                show_answer(
+                    s,
+                    "LED Blinking",
+                    led::Status::On,
+                    led::Triggering::HeartBeat,
+                )
+            })
+            .button("Turn Off", |s| {
+                show_answer(s, "LED Turned Off", led::Status::Off, led::Triggering::None)
+            }),
     );
 }
 
-fn show_answer(s: &mut Cursive, msg: &str, status: Status, triggering: Triggering) {
-
+fn show_answer(s: &mut Cursive, msg: &str, status: led::Status, triggering: led::Triggering) {
     let mut opi = OPI5::new();
     opi.led_triggering(triggering);
     opi.led_status(status);
