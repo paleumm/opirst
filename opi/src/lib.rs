@@ -1,13 +1,15 @@
 pub mod utils;
 use utils::led::{Status, Triggering, LED};
+use utils::temp::TEMP;
 
 pub struct OPI5 {
     led: LED,
+    temp: TEMP
 }
 
 impl OPI5 {
     pub fn new() -> Self {
-        OPI5 { led: LED::new() }
+        OPI5 { led: LED::new() , temp: TEMP::new()}
     }
 
     pub fn led_status(&mut self, status: Status) {
@@ -22,5 +24,9 @@ impl OPI5 {
             Triggering::HeartBeat => self.led.blink(),
             Triggering::None => self.led.stop_blink(),
         }
+    }
+
+    pub fn get_temp(&self) -> f32 {
+        self.temp.get_temp()
     }
 }
