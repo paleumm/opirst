@@ -1,7 +1,13 @@
 use std::process::Command;
 
 pub struct TEMP {
-    temp: f32,
+    gpu_thermal : f32,
+    littlecore_thermal : f32,
+    bigcore0_thermal : f32,
+    bigcore1_thermal : f32,
+    npu_thermal : f32,
+    center_thermal : f32,
+    soc_thermal : f32,
 }
 
 impl TEMP {
