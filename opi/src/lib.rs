@@ -4,12 +4,15 @@ use utils::temp::TEMP;
 
 pub struct OPI5 {
     led: LED,
-    temp: TEMP
+    temp: TEMP,
 }
 
 impl OPI5 {
     pub fn new() -> Self {
-        OPI5 { led: LED::new() , temp: TEMP::new()}
+        OPI5 {
+            led: LED::new(),
+            temp: TEMP::new(),
+        }
     }
 
     pub fn led_status(&mut self, status: Status) {

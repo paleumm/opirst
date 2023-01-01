@@ -3,13 +3,13 @@ use std::str;
 
 #[derive(Debug)]
 pub struct TEMP {
-    gpu_thermal : f32,
-    littlecore_thermal : f32,
-    bigcore0_thermal : f32,
-    bigcore1_thermal : f32,
-    npu_thermal : f32,
-    center_thermal : f32,
-    soc_thermal : f32,
+    gpu_thermal: f32,
+    littlecore_thermal: f32,
+    bigcore0_thermal: f32,
+    bigcore1_thermal: f32,
+    npu_thermal: f32,
+    center_thermal: f32,
+    soc_thermal: f32,
 }
 
 impl TEMP {
@@ -28,11 +28,28 @@ impl TEMP {
                 temps.push(temp);
             }
         }
-        TEMP { gpu_thermal: temps[0], littlecore_thermal: temps[1], bigcore0_thermal: temps[2], bigcore1_thermal: temps[3], npu_thermal: temps[4], center_thermal: temps[5], soc_thermal: temps[6] }
+        TEMP {
+            gpu_thermal: temps[0],
+            littlecore_thermal: temps[1],
+            bigcore0_thermal: temps[2],
+            bigcore1_thermal: temps[3],
+            npu_thermal: temps[4],
+            center_thermal: temps[5],
+            soc_thermal: temps[6],
+        }
     }
 
     pub fn as_vec(&self) -> Vec<f32> {
-        [self.gpu_thermal, self.littlecore_thermal, self.bigcore0_thermal, self.bigcore1_thermal, self.npu_thermal, self.center_thermal, self.soc_thermal].to_vec()
+        [
+            self.gpu_thermal,
+            self.littlecore_thermal,
+            self.bigcore0_thermal,
+            self.bigcore1_thermal,
+            self.npu_thermal,
+            self.center_thermal,
+            self.soc_thermal,
+        ]
+        .to_vec()
     }
 
     pub fn get_gpu_thermal(&self) -> f32 {

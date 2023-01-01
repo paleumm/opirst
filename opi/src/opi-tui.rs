@@ -32,7 +32,8 @@ fn show_next(s: &mut Cursive) {
             })
             .button("Turn Off", |s| {
                 show_answer(s, "LED Turned Off", led::Status::Off, led::Triggering::None)
-            }),
+            })
+            .button("Temp", |s| show_temp(s)),
     );
 }
 
@@ -48,4 +49,8 @@ fn show_answer(s: &mut Cursive, msg: &str, status: led::Status, triggering: led:
     );
 }
 
-fn show_temp(s: &mut Cursive) {}
+fn show_temp(s: &mut Cursive) {
+    let opi = OPI5::new();
+    s.pop_layer();
+    s.add_layer(Dialog::text("text"));
+}
