@@ -3,16 +3,19 @@ use std::io;
 use std::io::prelude::*;
 use std::path::Path;
 
+#[derive(Debug)]
 pub struct LED {
     status: Status,
     trigger: Triggering,
 }
 
+#[derive(Debug)]
 pub enum Status {
     On,
     Off,
 }
 
+#[derive(Debug)]
 pub enum Triggering {
     HeartBeat,
     None,

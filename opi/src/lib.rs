@@ -26,7 +26,7 @@ impl OPI5 {
         }
     }
 
-    pub fn get_temp(&self) -> f32 {
-        self.temp.get_temp()
+    pub fn get_temp(&self) -> Vec<f32> {
+        self.temp.as_vec()
     }
 }

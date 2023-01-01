@@ -1,5 +1,7 @@
 use std::process::Command;
+use std::str;
 
+#[derive(Debug)]
 pub struct TEMP {
     gpu_thermal : f32,
     littlecore_thermal : f32,
@@ -13,23 +15,51 @@ pub struct TEMP {
 impl TEMP {
     pub fn new() -> Self {
         let out = Command::new("sensors").output().unwrap();
-        println!("printing:\n{}", String::from_utf8(out.stdout).unwrap());
-        TEMP { temp: 0.0 }
+        let out = str::from_utf8(&out.stdout).unwrap();
+        TEMP::extract_temperatures(&out)
     }
 
-    pub fn get_temp(&self) -> Vec<f32> {
-        self.temp
-    }
-
-    fn extract_temperatures(input: &str) -> Vec<f32> {
-        let mut temperatures = Vec::new();
+    pub fn extract_temperatures(input: &str) -> Self {
+        let mut temps = Vec::new();
         for line in input.lines() {
             if line.starts_with("temp1:") {
                 let temp_str = line.split(":").nth(1).unwrap();
                 let temp: f32 = temp_str.trim().parse().unwrap();
-                temperatures.push(temp);
+                temps.push(temp);
             }
         }
-        temperatures
+        TEMP { gpu_thermal: temps[0], littlecore_thermal: temps[1], bigcore0_thermal: temps[2], bigcore1_thermal: temps[3], npu_thermal: temps[4], center_thermal: temps[5], soc_thermal: temps[6] }
+    }
+
+    pub fn as_vec(&self) -> Vec<f32> {
+        [self.gpu_thermal, self.littlecore_thermal, self.bigcore0_thermal, self.bigcore1_thermal, self.npu_thermal, self.center_thermal, self.soc_thermal].to_vec()
+    }
+
+    pub fn get_gpu_thermal(&self) -> f32 {
+        self.gpu_thermal
+    }
+
+    pub fn get_littlecore_thermal(&self) -> f32 {
+        self.littlecore_thermal
+    }
+
+    pub fn get_bigcore0_thermal(&self) -> f32 {
+        self.bigcore0_thermal
+    }
+
+    pub fn get_bigcore1_thermal(&self) -> f32 {
+        self.bigcore1_thermal
+    }
+
+    pub fn get_npu_thermal(&self) -> f32 {
+        self.npu_thermal
+    }
+
+    pub fn get_center_thermal(&self) -> f32 {
+        self.center_thermal
+    }
+
+    pub fn get_soc_thermal(&self) -> f32 {
+        self.soc_thermal
     }
 }

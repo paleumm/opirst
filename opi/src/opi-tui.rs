@@ -47,3 +47,5 @@ fn show_answer(s: &mut Cursive, msg: &str, status: led::Status, triggering: led:
             .button("Finish", |s| s.quit()),
     );
 }
+
+fn show_temp(s: &mut Cursive) {}
