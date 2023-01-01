@@ -17,7 +17,19 @@ impl TEMP {
         TEMP { temp: 0.0 }
     }
 
-    pub fn get_temp(&self) -> f32 {
+    pub fn get_temp(&self) -> Vec<f32> {
         self.temp
+    }
+
+    fn extract_temperatures(input: &str) -> Vec<f32> {
+        let mut temperatures = Vec::new();
+        for line in input.lines() {
+            if line.starts_with("temp1:") {
+                let temp_str = line.split(":").nth(1).unwrap();
+                let temp: f32 = temp_str.trim().parse().unwrap();
+                temperatures.push(temp);
+            }
+        }
+        temperatures
     }
 }
