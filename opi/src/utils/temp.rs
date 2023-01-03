@@ -1,3 +1,4 @@
+use std::fmt;
 use std::process::Command;
 use std::str;
 
@@ -78,5 +79,48 @@ impl TEMP {
 
     pub fn get_soc_thermal(&self) -> f32 {
         self.soc_thermal
+    }
+}
+
+impl fmt::Display for TEMP {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(
+            f,
+            "gpu_thermal\t: {}\n
+            littlecore_thermal\t: {}\n
+            bigcore0_thermal\t: {}\n
+            bigcore1_thermal\t: {}\n
+            npu_thermal\t: {}\n
+            center_thermal\t: {}\n
+            soc_thermal\t: {}",
+            self.gpu_thermal,
+            self.littlecore_thermal,
+            self.bigcore0_thermal,
+            self.bigcore1_thermal,
+            self.npu_thermal,
+            self.center_thermal,
+            self.soc_thermal
+        )
+    }
+}
+
+impl Into<String> for TEMP {
+    fn into(self) -> String {
+        format!(
+            "gpu_thermal\t: {}\n
+            littlecore_thermal\t: {}\n
+            bigcore0_thermal\t: {}\n
+            bigcore1_thermal\t: {}\n
+            npu_thermal\t: {}\n
+            center_thermal\t: {}\n
+            soc_thermal\t: {}",
+            self.gpu_thermal,
+            self.littlecore_thermal,
+            self.bigcore0_thermal,
+            self.bigcore1_thermal,
+            self.npu_thermal,
+            self.center_thermal,
+            self.soc_thermal
+        )
     }
 }
