@@ -4,7 +4,7 @@ use utils::temp::TEMP;
 
 pub struct OPI5 {
     led: LED,
-    temp: TEMP,
+    pub temp: TEMP,
 }
 
 impl OPI5 {
