@@ -1,0 +1,6 @@
+#!/bin/bash
+
+chown root:root target/release/opi-tui 
+mv target/release/opi-tui /usr/bin
+
+
