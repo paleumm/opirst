@@ -25,7 +25,10 @@ impl TEMP {
         for line in input.lines() {
             if line.starts_with("temp1:") {
                 let temp_str = line.split(":").nth(1).unwrap();
-                let temp: f32 = temp_str.trim().parse().unwrap();
+                let temp_str = temp_str.split("°C").nth(0).unwrap();
+                let temp_str = temp_str.trim();
+                let temp_str = temp_str.trim_start_matches("+");
+                let temp: f32 = temp_str.parse().unwrap();
                 temps.push(temp);
             }
         }
