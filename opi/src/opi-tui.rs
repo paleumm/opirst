@@ -55,6 +55,6 @@ fn show_temp(s: &mut Cursive) {
     s.add_layer(
         Dialog::text(opi.temp)
             .title("Temp")
-            .button("Finish", |s| s.quit()),
+            .button("Quit", |s| s.quit()),
     );
 }
