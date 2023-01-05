@@ -1,6 +1,7 @@
 pub mod utils;
 use utils::led::{Status, Triggering, LED};
 use utils::temp::TEMP;
+use utils::gpio::GPIO;
 
 pub struct OPI5 {
     led: LED,
@@ -31,5 +32,9 @@ impl OPI5 {
 
     pub fn get_temp(&self) -> Vec<f32> {
         self.temp.as_vec()
+    }
+
+    pub fn get_gpio() -> String {
+        GPIO::read_all()
     }
 }

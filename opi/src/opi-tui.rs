@@ -58,3 +58,13 @@ fn show_temp(s: &mut Cursive) {
             .button("Quit", |s| s.quit()),
     );
 }
+
+fn show_gpio(s: &mut Cursive) {
+    let opi = OPI5::new();
+    s.pop_layer();
+    // s.add_layer(
+    //     Dialog::text(opi.get)
+    //         .title("Temp")
+    //         .button("Quit", |s| s.quit()),
+    // );
+}
