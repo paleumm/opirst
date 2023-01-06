@@ -1,5 +1,6 @@
 use cursive::views::Dialog;
 use cursive::Cursive;
+use opi::utils::gpio::GPIO;
 use opi::utils::led;
 use opi::OPI5;
 
@@ -10,7 +11,8 @@ fn main() {
         Dialog::text("Welcome to OPiRST\n   LED Status")
             .title("OPiRST")
             .button("Settings", show_next)
-            .button("Temp", show_temp),
+            .button("Temp", show_temp)
+            .button("GPIO", show_gpio),
     );
     siv.run();
 }
@@ -60,11 +62,10 @@ fn show_temp(s: &mut Cursive) {
 }
 
 fn show_gpio(s: &mut Cursive) {
-    let opi = OPI5::new();
     s.pop_layer();
-    // s.add_layer(
-    //     Dialog::text(opi.get)
-    //         .title("Temp")
-    //         .button("Quit", |s| s.quit()),
-    // );
+    s.add_layer(
+        Dialog::text(GPIO::read_all())
+            .title("Temp")
+            .button("Quit", |s| s.quit()),
+    );
 }

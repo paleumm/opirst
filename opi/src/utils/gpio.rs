@@ -1,7 +1,7 @@
 use std::process::Command;
 
 pub struct GPIO {
-    GND: Pin
+    // GND: Pin
 }
 
 impl GPIO {
